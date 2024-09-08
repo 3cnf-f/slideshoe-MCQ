@@ -21,8 +21,8 @@ f_initLog()
 #     f.write('}')
 #     f.close()
 
-def f_imgFl_PathNnames():
-    f_out=listdir(thispath)
+def f_imgFl_PathNnames(in_path):
+    f_out=listdir(in_path)
     f_out.sort()
     ex_dirs, ex_files= f_retIMG.f_retDirsFiles(f_out)
     f_l(ex_dirs)
