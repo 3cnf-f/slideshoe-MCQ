@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Canvas </title>
+<style>
+  body { margin: 0; }
+  canvas { display: block; }
+</style>
+</head>
+<body>
+  <h1>poop</h1>
+<button id="prevBtn">Previous</button>
+<canvas id="myCanvas">yes canvas is no canvas</canvas>
+<button id="nextBtn">Next</button>
+
+<!-- <script>
+  const canvas = document.getElementById('myCanvas');
+  const ctx = canvas.getContext('2d');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  currentImage =''
+  const images = [
+    "Axelfall-MR240430-AxT2Stir-0000.png", "Axelfall-MR240430-AxT2Stir-0001.png", "Axelfall-MR240430-AxT2Stir-0002.png", ".AxT2Stir/Axelfall-MR240430-AxT2Stir-0003.png",
+     "Axelfall-MR240430-AxT2Stir-0004.png", "Axelfall-MR240430-AxT2Stir-0005.png" ]
+  canvas.width = 500;
+  canvas.height = 300;
+
+  function drawImage() {
+    const img = new Image();
+    img.onload = () => {
+
+
+    
+      ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear canvas
+      ctx.drawImage(img, (canvas.width - img.width) / 2, (canvas.height - img.height) / 2);
+    };
+    img.src = images[currentImage];
+  }
+
+  prevBtn.addEventListener('click', () => {
+    currentImage = (currentImage - 1 + images.length) % images.length; // Wrap around
+    drawImage();
+  });
+
+  nextBtn.addEventListener('click', () => {
+    currentImage = (currentImage + 1) % images.length; // Wrap around
+    drawImage();
+  });
+
+  drawImage(); // Draw the first image
+</script> -->
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
