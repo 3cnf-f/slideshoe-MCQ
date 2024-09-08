@@ -27,4 +27,5 @@ def f_imgFl_PathNnames():
     ex_dirs, ex_files= f_retIMG.f_retDirsFiles(f_out)
     f_l(ex_dirs)
 
-f_FOLDERdotSerialAppend('CorT2','dumpit.txt')
+# f_FOLDERdotSerialAppend('CorT2','dumpit.txt')
+f_imgFl_PathNnames('../../cases/test_axel')
