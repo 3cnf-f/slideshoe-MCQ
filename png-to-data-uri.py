@@ -16,7 +16,7 @@ def f_FOLDERdotSerialAppend(in_folder,in_appendfile):
         f_l(str(i)+' : '+this_image)
         png_uri=DataURI.from_file(this_image)
         f.write('image'+str(i)+': \''+str(png_uri)+'\', ')
-        f_l('image'+str(i)+': \''+str(png_uri)+'\', ')
+        f_l('image'+str(i)+': \'-datauriremoved-\', ')
     f.write('}')
     f.close()
 
