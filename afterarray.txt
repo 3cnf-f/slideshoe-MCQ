@@ -1,0 +1,72 @@
+];
+
+        const canvases = {
+            left: document.getElementById('leftCanvas'),
+            right: document.getElementById('rightCanvas')
+        };
+
+        const contexts = {
+            left: canvases.left.getContext('2d'),
+            right: canvases.right.getContext('2d')
+        };
+
+        const state = {
+            left: { stackIndex: 0, imageIndex: 0 },
+            right: { stackIndex: 1, imageIndex: 0 }
+        };
+
+        function preloadImages() {
+            stacks.forEach(stack => {
+                Object.entries(stack).forEach(([key, dataUri]) => {
+                    if (key !== 'name') {
+                        const img = new Image();
+                        img.src = dataUri;
+                    }
+                });
+            });
+        }
+
+        function drawImage(side) {
+            const { stackIndex, imageIndex } = state[side];
+            const stack = stacks[stackIndex];
+            const dataUri = Object.values(stack)[imageIndex + 1]; // +1 to skip 'name'
+            const img = new Image();
+            img.onload = () => {
+                contexts[side].clearRect(0, 0, canvases[side].width, canvases[side].height);
+                contexts[side].drawImage(img, 0, 0, canvases[side].width, canvases[side].height);
+            };
+            img.src = dataUri;
+            updateStackInfo(side);
+        }
+
+        function changeImage(side, direction) {
+            const stack = stacks[state[side].stackIndex];
+            state[side].imageIndex += direction;
+            if (state[side].imageIndex < 0) state[side].imageIndex = Object.keys(stack).length - 2; // -2 to account for 'name'
+            if (state[side].imageIndex >= Object.keys(stack).length - 1) state[side].imageIndex = 0; // -1 to account for 'name'
+            drawImage(side);
+        }
+
+        function switchStack(side) {
+            state[side].stackIndex = (state[side].stackIndex + 1) % stacks.length;
+            state[side].imageIndex = 0;
+            drawImage(side);
+        }
+
+        function updateStackInfo(side) {
+            const { stackIndex, imageIndex } = state[side];
+            const stack = stacks[stackIndex];
+            const infoElement = document.getElementById(`${side}StackInfo`);
+            infoElement.textContent = `${stack.name} - Image ${imageIndex + 1}/${Object.keys(stack).length - 1}`;
+        }
+
+        function init() {
+            preloadImages();
+            drawImage('left');
+            drawImage('right');
+        }
+
+        init();
+    </script>
+</body>
+</html>
