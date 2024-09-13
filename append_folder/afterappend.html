@@ -1,0 +1,189 @@
+
+
+
+
+const canvas = document.getElementById('myCanvas');
+        const ctx = canvas.getContext('2d');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        let scrollval = 20;
+        let isSag=false;
+        var totMod = 1;
+        var curMod = 0;
+        var sagSTR_old ="1234567890";
+        var sagSTR ="R--------L";
+        var currSagSTR="";
+
+        let currentImageIndex = 1;
+        const totalImages = Object.keys(stack1).length -1;
+        const loadedImages = {};
+
+        // Preload all images
+        function preloadImages() {
+            return new Promise((resolve) => {
+                let loadedCount = 0;
+                for (let key in stack1) {
+                    const img = new Image();
+                    img.onload = () => {
+                        loadedImages[key] = img;
+                        loadedCount++;
+                        if (loadedCount === totalImages) {
+                            resolve();
+                        }
+                    };
+                    img.src = stack1[key];
+                }
+            });
+        }
+
+        function drawSag(inDex){
+             
+                curMod = Math.round((inDex / totMod));
+                
+                currSagSTR=sagSTR.slice(0,curMod)+"("+sagSTR.slice(curMod,curMod+1)+")"+sagSTR.slice(curMod+1);
+                document.getElementById("isSag").innerHTML =  String(currSagSTR)
+
+
+
+ 
+            // document.getElementById("isSag").innerHTML = "(R)--------L"; 
+            
+
+
+
+        }
+
+        // Display image on canvas
+        function displayImage(index) {
+            const imageKey = `image${index}`;
+
+
+
+	if (loadedImages[imageKey]) {
+        canvas.height = window.innerHeight*0.9 //test<---
+			canvas.width = window.innerWidth*0.9 			//test<---
+			if (canvas.height<canvas.width){canvas.width=canvas.height} else {canvas.with=canvas.height}
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                //width = loadedImages[imageKey].naturalWidth; // this will be 300
+                height = canvas.height; // this will be 400
+				width = canvas.width;				//test<---
+				if (height<width) {width=height } else {height=width}
+		ctx.drawImage(loadedImages[imageKey], 0, 0, width, height);
+        // document.getElementById("examname").innerHTML = String(const_examname);
+        // document.getElementById("seriesname").innerHTML = String(const_seriesname);
+
+        document.getElementById("slidenumber").innerHTML = String(currentImageIndex);
+        document.getElementById("slidetotal").innerHTML = String(totalImages);
+        if (isSag==true) {drawSag(currentImageIndex,totMod); }
+
+            }
+        }
+
+        // Button event listeners
+        prevBtn.addEventListener('click', () => {
+            currentImageIndex = (currentImageIndex - 1 + totalImages) % totalImages || totalImages;
+			
+            canvas.height = window.innerHeight*0.9 //test<---
+			canvas.width = window.innerWidth*0.9 			//test<---
+			if (canvas.height<canvas.width){canvas.width=canvas.height} else {canvas.with=canvas.height}
+     
+
+
+			displayImage(currentImageIndex);
+        });
+
+        nextBtn.addEventListener('click', () => {
+            currentImageIndex = (currentImageIndex % totalImages) + 1;
+            canvas.height = window.innerHeight*0.9 //test<---
+			canvas.width = window.innerWidth*0.9 			//test<---
+			if (canvas.height<canvas.width){canvas.width=canvas.height} else {canvas.with=canvas.height}
+            displayImage(currentImageIndex);
+        });
+
+        canvas.addEventListener('wheel',() => { 
+            scrollval=scrollval-parseInt(event.deltaY);
+           
+            if (scrollval>300){
+                scrollval=0;
+
+                if (currentImageIndex < totalImages) { currentImageIndex = currentImageIndex  + 1;  }
+            canvas.height = window.innerHeight*0.9 //test<---
+			canvas.width = window.innerWidth*0.9 			//test<---
+			if (canvas.height<canvas.width){canvas.width=canvas.height} else {canvas.with=canvas.height}
+            displayImage(currentImageIndex);
+
+            };
+            if (scrollval<-300){
+                scrollval=0;
+
+                if (currentImageIndex > 0) { currentImageIndex = currentImageIndex  - 1;  }
+            canvas.height = window.innerHeight*0.9 //test<---
+			canvas.width = window.innerWidth*0.9 			//test<---
+			if (canvas.height<canvas.width){canvas.width=canvas.height} else {canvas.with=canvas.height}
+            displayImage(currentImageIndex);
+
+
+            };
+            });
+            
+            // canvas.addEventListener('onkeydown',() => { 
+            // // document.getElementById("keykey").innerHTML = "e.keyCode";
+            // document.getElementById("keykey").innerHTML = "pooop";
+            // });
+            // function butDown(inthis){
+            //     document.getElementById("keykey").innerHTML = "bs";
+
+
+
+            // }
+            window.addEventListener('keydown', function (event) {
+    //   console.log(event.key);
+    document.getElementById("keykey").innerHTML = String(event.key);
+    if (String(event.key)=="ArrowLeft"){
+
+        if (currentImageIndex > 0) { currentImageIndex = currentImageIndex  - 1;  }
+            canvas.height = window.innerHeight*0.9 //test<---
+			canvas.width = window.innerWidth*0.9 			//test<---
+			if (canvas.height<canvas.width){canvas.width=canvas.height} else {canvas.with=canvas.height}
+            displayImage(currentImageIndex);
+    }
+    if (String(event.key)=="ArrowRight"){
+        if (currentImageIndex < totalImages) { currentImageIndex = currentImageIndex  + 1;  }
+            canvas.height = window.innerHeight*0.9 //test<---
+			canvas.width = window.innerWidth*0.9 			//test<---
+			if (canvas.height<canvas.width){canvas.width=canvas.height} else {canvas.with=canvas.height}
+            displayImage(currentImageIndex);
+    }
+   });
+            
+            // Initialize
+        preloadImages().then(() => {
+            document.getElementById("casename").innerHTML = String(const_casename);
+            document.getElementById("examname").innerHTML = String(const_examname);;
+            document.getElementById("seriesname").innerHTML = String(const_seriesname);
+            document.getElementById("myTitle").innerHTML = "f_a.23we.cc:"+String(const_casename)+ ":"+String(const_examname)+ ":" +String(const_seriesname);
+
+            if (const_sag=="True") {
+                isSag=true;
+                document.getElementById("isSag").innerHTML = "(R)--------L";
+                document.getElementById("ifSagTag").innerHTML = "Sag-Pos:[ ";
+                document.getElementById("ifSagTag2").innerHTML = "] ";
+       
+               totMod=(totalImages)/ 9 ;
+            } 
+            if (const_sag=="False"){
+                isSag=false;
+                document.getElementById("isSag").innerHTML = "";
+                document.getElementById("ifSagTag").innerHTML = "";
+                document.getElementById("ifSagTag2").innerHTML = "";
+
+
+
+            }
+            
+            displayImage(currentImageIndex);
+        });
+
+    </script>
+</body>
+</html>
