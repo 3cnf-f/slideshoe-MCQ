@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="myTitle">Image Stack Viewer</title>
+    <style>
+        canvas {
+            border: 1px solid #000;
+        }
+        button {
+            margin: 10px;
+            padding: 5px 10px;
+        }
+		.buttoon {
+  background-color: #777BAB;
+  border: none;
+  color: white;
+  padding: 2px 2px;
+  text-align: center;
+  text-decoration: none;
+  display: inline;
+  font-size: 9px;
+  margin: 0px 0px;
+  cursor: pointer;
+
+ 
+}
+
+    .p-no-wrap {
+        white-space: nowrap;
+
+
+
+    }
+    .CaExSe{
+        font-size: medium;
+        color: darkmagenta;
+        display: inline;
+
+    }
+    .SlNu{
+        font-size: large;
+        color: deeppink;
+        display: inline;
+
+    }
+    .SlNu{
+        font-size: large;
+        color: green;
+        display: inline;
+
+    }
+    .IfSt{
+        font-size:x-large;
+        color:darkblue;
+        display: inline;
+
+    }
+    .iS{
+        font-size:larger;
+        color:rgb(121, 12, 35);
+        display: inline;
+
+    }
+    </style>
+</head>
+<body>
+<div>
+    <button id="prevBtn" class=buttoon>Previous</button>
+    <button id="nextBtn" class=buttoon>Next</button>
+    &nbsp;&nbsp; Case:
+    <span id=casename class="CaExSe">
+        Case
+    </span>
+    &nbsp;&nbsp;Exam:
+    <span id=examname class="CaExSe">
+        Exam
+    </span>
+    &nbsp;&nbsp;Series:
+    <span id=seriesname class="CaExSe">
+        Series
+            </span>
+    
+     &nbsp;&nbsp; 
+     <span id=ifSagTag class="ifSt">
+        isSag
+     </span> 
+   <span id=isSag class="iS">
+        isSag
+     </span> 
+     <span id=ifSagTag2 class="ifSt">
+        isSag
+     </span> 
+     &nbsp;&nbsp;Img:
+     <span id=slidenumber class="SlNu">
+        1
+     </span>
+     <span class="SlNu-slash">
+         /
+     </span>
+     <span id=slidetotal class="SlNu">
+         23
+      </span>
+	<br>
+</div>    
+	<canvas id="myCanvas" ></canvas>
+
+    <script>

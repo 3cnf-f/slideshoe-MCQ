@@ -2,4 +2,10 @@
 .venv/*
 cases
 boys2poop.txt
-*.html
+axt*
+**/__pycache__
+ignore*
+htmlfiles
+**/__pycache__
+f_log.log
+appendfiles
