@@ -65,21 +65,21 @@ def f_append_todatauri(in_append,out_html,pre_append="/config/workspace/slidesho
 
 # def f_end_datauri_file(in_folder,in_appendfile):
 curr_base_base="/config/workspace/slideshoe-MCQ/"
-curr_casename="Neo1"
+curr_casename="missb1"
 curr_casefolder=curr_casename+"/"
-curr_examname="MR-Hjarna"
+curr_examname="MR190912"
 curr_examfolder=curr_examname+"/"
-curr_seriesname='swi-jpg'
+curr_seriesname='adc'
 curr_imgtype='.jpg'
-curr_isSag=False
+curr_isSag=True
 
 
 curr_img_folder=curr_base_base+"cases/"+curr_casefolder+curr_examfolder+curr_seriesname+'/'
-curr_appendfolder=curr_base_base+"appendfiles/"+curr_casefolder+curr_examfolder+curr_seriesname+'/'
+curr_appendfolder=curr_base_base+"appendfiles/"+curr_imgtype+"/"+curr_casefolder+curr_examfolder+'/'
 if not o_p.exists(curr_appendfolder):
     o_makedirs(curr_appendfolder)
 
-curr_htmlfolder=curr_base_base+"htmlfiles/"+curr_casefolder+curr_examfolder+'/'
+curr_htmlfolder=curr_base_base+"htmlfiles/"+curr_imgtype+"/"+curr_casefolder+curr_examfolder+'/'
 if not o_p.exists(curr_htmlfolder):
     o_makedirs(curr_htmlfolder)
 curr_htmlfile=curr_htmlfolder+curr_seriesname+".html"

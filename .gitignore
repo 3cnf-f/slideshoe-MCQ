@@ -9,3 +9,5 @@ htmlfiles
 **/__pycache__
 f_log.log
 appendfiles
+*.tar.gz
+*.zip
