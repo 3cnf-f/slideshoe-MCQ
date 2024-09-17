@@ -63,12 +63,12 @@ def f_append_todatauri(in_append,out_html,pre_append="/config/workspace/slidesho
 def f_jpg_folder_to_html(in_basename,in_casename,in_examname,in_seriesname,in_isSag=False,in_imgtype=".jpg"):
     curr_casefolder=in_casename+"/"
     curr_examfolder=in_examname+"/"
-    curr_img_folder=in_basename+"cases/"+curr_casefolder+curr_examfolder+in_seriesname+'/'
-    curr_appendfolder=in_basename+"appendfiles/"+in_imgtype+"/"+curr_casefolder+curr_examfolder+'/'
+    curr_img_folder=in_basename+"/cases/"+curr_casefolder+curr_examfolder+in_seriesname+'/'
+    curr_appendfolder=in_basename+"/appendfiles/"+in_imgtype+"/"+curr_casefolder+curr_examfolder+'/'
 
     if not o_p.exists(curr_appendfolder):
         o_makedirs(curr_appendfolder)
-    curr_htmlfolder=in_basename+"htmlfiles/"+in_imgtype+"/"+curr_casefolder+curr_examfolder+'/'
+    curr_htmlfolder=in_basename+"/htmlfiles/"+in_imgtype+"/"+curr_casefolder+curr_examfolder+'/'
 
     if not o_p.exists(curr_htmlfolder):
         o_makedirs(curr_htmlfolder)
@@ -147,7 +147,9 @@ def f_list_cMeS_folders(inpath):
         
 def f_pars_it(in_list_cmes):
     for i_cmes in in_list_cmes:
-        print(f_foldername_to_parts(i_cmes))
+        b_base,b_case,b_exam,b_series,b_isSag=f_foldername_to_parts(i_cmes)
+        f_jpg_folder_to_html(b_base,b_case,b_exam,b_series,b_isSag)
+
  
 
 f_pars_it(f_list_cMeS_folders(f_getargs()))
