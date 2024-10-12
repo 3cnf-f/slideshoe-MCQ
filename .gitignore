@@ -1,13 +1,14 @@
 **/.venv
 .venv/*
-cases
+*cases/
 boys2poop.txt
 axt*
 **/__pycache__
 ignore*
-htmlfiles
+*htmlfiles/
 **/__pycache__
 f_log.log
-appendfiles
+*appendfiles/
 *.tar.gz
 *.zip
+*_zip
